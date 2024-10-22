@@ -101,7 +101,6 @@ const getResult = function () {
   } else {
     wrong++;
   }
-  console.log(answer);
   saveAnswers(index, answer, data.correct);
   index++;
   loadQues();
@@ -120,7 +119,6 @@ const checkAnswer = function () {
 };
 
 const saveAnswers = (index, choosen, answer) => {
-  console.log(index);
   var answerFormat = {
     index: index,
     choosen: choosen,
@@ -137,7 +135,6 @@ const saveAnswers = (index, choosen, answer) => {
         // If index matches, replace the existing answer
         choosenAnswer.splice(i, 1, answerFormat);
         found = true;
-        console.log('if worked');
         break;
       }
     }
@@ -145,10 +142,8 @@ const saveAnswers = (index, choosen, answer) => {
     // If the index was not found, push the new answer
     if (!found) {
       choosenAnswer.push(answerFormat);
-      console.log('else worked');
     }
   }
-  console.log(choosenAnswer);
 };
 
 
@@ -183,7 +178,7 @@ function showAnswer() {
 
     // Attach event listeners for navigation
     document.querySelector('.submit').onclick = nextQ;
-    document.querySelector('.submit2').onclick = prevQ;
+    document.querySelector('.submit2').onclick = prevQues;
 
     // Hide Prev button on the first question
     if (index === 0) {
@@ -210,6 +205,13 @@ function nextQ() {
 }
 // Navigate to previous question
 const prevQ = function () {
+  if (index > 0) {
+    index--;
+    loadQues();
+  }
+};
+// Navigate to previous question
+const prevQues = function () {
   if (i > 0) {
     i--;
     loadQues();
